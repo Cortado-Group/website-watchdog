@@ -52,9 +52,27 @@ python3 status.py stats        # 24h uptime stats
 python3 status.py checks 50    # Last 50 checks
 ```
 
-## Install Cron (Automated Monitoring)
+## Install as Service (Recommended)
 
-Run every 5 minutes:
+Install as macOS LaunchAgent (auto-start, better logging):
+
+```bash
+./install_service.sh
+```
+
+Check status:
+```bash
+./service_status.sh
+```
+
+Stop service:
+```bash
+./uninstall_service.sh
+```
+
+## Alternative: Install Cron
+
+If you prefer cron instead of a service:
 
 ```bash
 ./install_cron.sh

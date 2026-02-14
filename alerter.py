@@ -114,11 +114,13 @@ class Alerter:
             full_message = f"*{title}*\n\n{message}"
             
             # Use clawdbot CLI to send message
+            # Note: Adjust this command based on your actual clawdbot CLI syntax
+            # Or use the message tool directly if running within clawdbot context
             cmd = [
-                'clawdbot', 'message',
-                '--channel', 'slack',
-                '--to', channel,
-                '--message', full_message
+                'clawdbot', 'send',
+                'slack',
+                channel,
+                full_message
             ]
             
             result = subprocess.run(
