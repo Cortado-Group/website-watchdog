@@ -1,0 +1,42 @@
+# Website Watchdog - Monitoring Targets
+# Add your endpoints and services here
+
+targets:
+  - name: "Django Project Dev"
+    url: "https://cg.cortadogroup.dev/api/version/"
+    method: GET
+    expected_status: 200
+    timeout: 10
+    alert_channels:
+      - slack
+      - email
+
+  - name: "Cortado Group Website"
+    url: "https://cortadogroup.com"
+    method: GET
+    expected_status: 200
+    timeout: 10
+    contains: "Cortado"  # Optional: verify page content
+    alert_channels:
+      - slack
+      - email
+      - sms
+
+# Alert configuration
+alerts:
+  slack:
+    enabled: true
+    channel: "#alerts"  # or specific channel
+    
+  email:
+    enabled: true
+    recipients:
+      - "david@cortadogroup.com"
+    escalate_after: 3  # Send email after 3 consecutive failures
+    
+  sms:
+    enabled: false  # Enable when configured
+    recipients:
+      - "+1234567890"
+    escalate_after: 5  # Send SMS after 5 consecutive failures
+    method: "twilio"  # or "email_gateway"
